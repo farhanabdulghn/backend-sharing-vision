@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"errors"
+	"log"
 	"net/http"
 	"strconv"
 	"strings"
@@ -60,6 +61,8 @@ func (h *PostHandler) Create(w http.ResponseWriter, r *http.Request) {
 
 	post, err := h.Repo.Create(in)
 	if err != nil {
+		log.Printf("ERROR saat CREATE ke DB: %v", err)
+
 		writeError(w, http.StatusInternalServerError, "failed to create article")
 		return
 	}
