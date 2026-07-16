@@ -1,0 +1,82 @@
+{
+  "info": {
+    "name": "Post Article API",
+    "description": "Collection for the Sharing Vision 2023 backend test - Post Article use case.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8080" },
+    { "key": "article_id", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "Create Article",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Belajar Golang untuk Backend Developer\",\n  \"content\": \"Golang adalah bahasa pemrograman yang dikembangkan oleh Google, dikenal karena performanya yang tinggi dan kemudahan untuk membangun aplikasi backend yang scalable. Dalam artikel ini kita akan membahas dasar-dasar Golang mulai dari syntax, goroutine, hingga cara membangun REST API sederhana menggunakan standard library net/http.\",\n  \"category\": \"Technology\",\n  \"status\": \"draft\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/article/",
+          "host": ["{{base_url}}"],
+          "path": ["article", ""]
+        }
+      }
+    },
+    {
+      "name": "List Articles (paginated)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/article/10/0",
+          "host": ["{{base_url}}"],
+          "path": ["article", "10", "0"]
+        }
+      }
+    },
+    {
+      "name": "Get Article By Id",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/article/{{article_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["article", "{{article_id}}"]
+        }
+      }
+    },
+    {
+      "name": "Update Article",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Belajar Golang untuk Backend Developer (Revisi)\",\n  \"content\": \"Golang adalah bahasa pemrograman yang dikembangkan oleh Google, dikenal karena performanya yang tinggi dan kemudahan untuk membangun aplikasi backend yang scalable. Revisi artikel ini menambahkan pembahasan tentang penggunaan database/sql, migration, dan validasi request pada endpoint REST API.\",\n  \"category\": \"Technology\",\n  \"status\": \"publish\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/article/{{article_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["article", "{{article_id}}"]
+        }
+      }
+    },
+    {
+      "name": "Delete Article",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{base_url}}/article/{{article_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["article", "{{article_id}}"]
+        }
+      }
+    }
+  ]
+}
